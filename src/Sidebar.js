@@ -7,13 +7,15 @@ import PeopleIcon from '@mui/icons-material/People';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
+import { useStateValue } from './StateProvider';
 
 function Sidebar() {
+    const [{user}, dispatch] = useStateValue();
     return (
         <div className="sidebar">
             <SidebarRow 
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5oebT-Erez_xS7W3OpFBJY4k1WyZ4Ah3RU98ijlG_yyrstEpNnwbxpMrypdF_HQCT5_U&usqp=CAU" 
-                title="Madhu Peram"/>
+                src={user.photoURL}
+                title={user.displayName}/>
             <SidebarRow 
                 Icon={LocalHospitalIcon} 
                 title="COVID-19 Information Center"/>
