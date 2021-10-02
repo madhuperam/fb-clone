@@ -10,7 +10,7 @@
     width: 100%;
 }
 
-.post_top{
+.post__top{
     display: flex;
     position: relative;
     align-items: center;

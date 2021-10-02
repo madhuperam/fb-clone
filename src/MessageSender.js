@@ -6,6 +6,8 @@ import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
 import EmojiEmotionsOutlinedIcon from '@mui/icons-material/EmojiEmotionsOutlined';
 import  { useState } from "react";
 import { useStateValue } from './StateProvider';
+import db from './firebase';
+import firebase from 'firebase';
 
 function MessageSender() {
     const [{user}, dispatch] = useStateValue();
@@ -14,6 +16,14 @@ function MessageSender() {
 
     const handleSubmit = (event) => {
         event.preventDefault();  //this prevents refreh of the page
+
+        db.collection("posts").add({
+            message: input,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            profilePic: user.photoURL,
+            image: imageUrl,
+            username: user.displayName
+        })
 
         setImageUrl("");
         setInput("");
